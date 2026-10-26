@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Tecnologia, equipe, prontuário digital e consultoria comercial para médicos na Clínica Blues, em Belo Horizonte. Consultório pronto por hora, turno ou diária.">
+<meta property="og:title" content="Clínica Blues · Serviços para médicos">
+<meta property="og:description" content="Tecnologia, equipe e apoio comercial para a sua clínica crescer. Rua Padre Marinho, 165 · Santa Efigênia · BH.">
+<title>Consultório Blues</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: página editorial em grade de 12 colunas, assimétrica; fios finos no lugar de cards; navy como texto e faixa, dourado só em marcações */
+:root{
+  --paper:#f6f7fa; --surface:#ffffff; --ink:#101a3a; --text:#3a4260; --muted:#666e8c;
+  --gold:#9a6d26; --gold-line:#c9a15a; --rule:#dde1ea; --tint:#eceff6;
+  --band:#101a3a; --on-band:#eef1f8; --on-band-muted:#a9b2cc; --band-gold:#d9ad62;
+  --f-display:'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --f-body:'Figtree', 'Helvetica Neue', Arial, sans-serif;
+  --gutter:max(20px, env(safe-area-inset-left, 0px));
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0c1226; --surface:#121a33; --ink:#eef1f8; --text:#c3c9da; --muted:#8e96b0;
+  --gold:#d9ad62; --gold-line:#b48a45; --rule:#232c4a; --tint:#161f3b;
+  --band:#060a18; --on-band:#eef1f8; --on-band-muted:#a9b2cc; --band-gold:#d9ad62; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0c1226; --surface:#121a33; --ink:#eef1f8; --text:#c3c9da; --muted:#8e96b0;
+  --gold:#d9ad62; --gold-line:#b48a45; --rule:#232c4a; --tint:#161f3b;
+  --band:#060a18; --on-band:#eef1f8; --on-band-muted:#a9b2cc; --band-gold:#d9ad62; color-scheme:dark }
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--text);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+.in{max-width:1180px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{margin:0;color:var(--ink);text-wrap:balance}
+h1,h2{font-family:var(--f-display);font-weight:400;letter-spacing:-.012em}
+h2{font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.08}
+h3{font:600 1.06rem/1.3 var(--f-body)}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-line);outline-offset:3px}
+.label{font:600 .74rem/1.2 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.lede{font-size:1.12rem;line-height:1.6;color:var(--text);max-width:52ch}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:22px;border-bottom:1px solid var(--rule)}
+.wordmark{display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--ink)}
+.wordmark .c{font-family:var(--f-display);font-size:25px;line-height:1}
+.wordmark .b{font:700 26px/1 var(--f-body);letter-spacing:-.035em}
+.wordmark svg{width:21px;height:21px}
+.nav{display:flex;gap:28px;align-items:center;font-size:.94rem}
+.nav a{text-decoration:none;color:var(--text)}
+.nav a:hover{color:var(--ink)}
+.nav .cta-link{color:var(--ink);font-weight:600;border-bottom:1.5px solid var(--gold-line);padding-bottom:2px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;font:600 1rem/1 var(--f-body);text-decoration:none;cursor:pointer;border:0;border-radius:6px;padding:17px 24px;background:#101a3a;color:#f3f5fa;transition:background .2s}
+.btn:hover{background:#1d2b5c}
+:root[data-theme="dark"] .btn{background:#d9ad62;color:#101a3a}
+:root[data-theme="dark"] .btn:hover{background:#e6bf7c}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{background:#d9ad62;color:#101a3a}:root:not([data-theme="light"]) .btn:hover{background:#e6bf7c}}
+.btn svg{width:18px;height:18px}
+.textlink{font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--rule);padding-bottom:3px}
+.textlink:hover{border-color:var(--gold-line)}
+.btn-quiet{background:transparent;color:var(--ink);border:1.5px solid var(--rule);border-radius:6px;padding:13px 18px;font:600 .95rem/1 var(--f-body);cursor:pointer;text-decoration:none;display:inline-flex;gap:10px;align-items:center}
+.btn-quiet:hover{border-color:var(--gold-line)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;padding-block:64px 72px;align-items:end}
+.hero-copy{grid-column:1 / span 6;display:flex;flex-direction:column;gap:26px;padding-bottom:12px;animation:rise .7s ease-out both}
+.hero h1{font-size:clamp(2.7rem,5.4vw,4.4rem);line-height:1.02}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .actions{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:6px}
+.hero-media{grid-column:8 / span 5;position:relative;animation:rise .9s .1s ease-out both}
+.hero-media .office{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.hero-media .front{position:absolute;left:-26%;bottom:-36px;width:44%;aspect-ratio:1;max-width:100%;object-fit:cover;border-radius:50%;border:6px solid var(--paper);outline:1.5px solid var(--gold-line)}
+.hero-media figcaption{position:absolute;right:0;bottom:-34px;font-size:.84rem;color:var(--muted)}
+@keyframes rise{from{opacity:.001;transform:translateY(14px)}to{opacity:1;transform:none}}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.facts div{padding:22px 24px 22px 0;font-size:.97rem;color:var(--text)}
+.facts div + div{padding-left:24px;border-left:1px solid var(--rule)}
+.facts b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+
+/* section scaffold */
+.sec{padding-block:96px 24px}
+.sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end;margin-bottom:44px}
+.sec-head .t{grid-column:1 / span 7;display:flex;flex-direction:column;gap:14px}
+.sec-head .d{grid-column:9 / span 4;color:var(--muted);font-size:1rem}
+
+/* comparison */
+.compare{width:100%;border-collapse:collapse;font-size:1rem}
+.compare th{font:600 .74rem/1.2 var(--f-body);letter-spacing:.16em;text-transform:uppercase;text-align:left;color:var(--muted);padding:0 0 14px;border-bottom:1.5px solid var(--ink)}
+.compare th:last-child{color:var(--gold)}
+.compare td{padding:18px 24px 18px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.compare td:first-child{color:var(--ink);font-weight:600;width:26%}
+.compare td:nth-child(2){color:var(--muted);width:32%}
+.compare td:last-child{color:var(--ink)}
+.tablewrap{overflow-x:auto}
+
+/* formats */
+.formats{display:grid;grid-template-columns:repeat(5,1fr);border-top:1.5px solid var(--ink)}
+.fmt{padding:22px 20px 26px 0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.fmt + .fmt{padding-left:20px;border-left:1px solid var(--rule)}
+.fmt .n{font-family:var(--f-display);font-size:1.55rem;line-height:1.1;color:var(--ink)}
+.fmt .h{font-size:.86rem;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.fmt p{font-size:.95rem}
+.fmt.best .n{color:var(--gold)}
+.fmt .flag{font:600 .7rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:auto;padding-top:8px}
+.footnote{margin-top:22px;color:var(--muted);font-size:.94rem}
+
+/* tech list */
+.tech{border-top:1.5px solid var(--ink)}
+.trow{display:grid;grid-template-columns:72px minmax(0,1.1fr) minmax(0,1.6fr) minmax(0,.8fr);gap:24px;align-items:center;padding-block:16px;border-bottom:1px solid var(--rule)}
+.trow img{width:72px;height:56px;object-fit:cover;border-radius:2px;background:var(--tint)}
+.trow h3{font-size:1.04rem}
+.trow p{color:var(--muted);font-size:.95rem}
+.trow .how{font-size:.9rem;color:var(--ink);font-weight:500;text-align:right}
+
+/* digital */
+.digital{display:grid;grid-template-columns:1fr 1fr;border-top:1.5px solid var(--ink)}
+.prod{padding:34px 40px 10px 0;display:flex;flex-direction:column;gap:20px;min-width:0}
+.prod + .prod{padding-left:40px;padding-right:0;border-left:1px solid var(--rule)}
+.prod-brand{display:flex;align-items:center;gap:14px}
+.prod-brand img{width:52px;height:52px;flex:none}
+.prod-brand .nm{font:700 1.45rem/1 var(--f-body);letter-spacing:-.02em;color:var(--ink)}
+.prod-brand .by{display:block;font-size:.82rem;color:var(--muted);margin-top:5px}
+.prod .what{font-family:var(--f-display);font-size:1.45rem;line-height:1.2;color:var(--ink)}
+.prod ul{margin:0;padding:0;list-style:none}
+.prod li{padding:11px 0;border-top:1px solid var(--rule);font-size:.98rem}
+.prod .opt-note{font-size:.88rem;color:var(--gold);font-weight:600}
+.prod .go{align-self:flex-start;display:inline-flex;gap:10px;align-items:center;text-decoration:none;font-weight:600;color:var(--ink);border-bottom:1.5px solid var(--gold-line);padding-bottom:3px}
+.prod .go svg{width:16px;height:16px}
+
+/* growth */
+.grow{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.grow .side{grid-column:1 / span 4;position:sticky;top:24px;align-self:start;display:flex;flex-direction:column;gap:14px}
+.grow dl{grid-column:6 / span 7;margin:0;border-top:1.5px solid var(--ink)}
+.grow dt{font:600 1.08rem/1.3 var(--f-body);color:var(--ink);padding-top:22px}
+.grow dd{margin:6px 0 0;padding-bottom:22px;border-bottom:1px solid var(--rule);color:var(--text)}
+.grow dd small{display:block;color:var(--muted);font-size:.9rem;margin-top:4px}
+.grow .pack dt{color:var(--gold)}
+
+/* band */
+.band{background:var(--band);color:var(--on-band);margin-top:96px}
+.band .in{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding-block:64px}
+.band h2{grid-column:1 / span 6;color:var(--on-band)}
+.band p{grid-column:8 / span 5;color:var(--on-band-muted);font-size:1.06rem;align-self:end}
+.band p b{color:var(--on-band);font-weight:600}
+.band .label{color:var(--band-gold);grid-column:1 / -1}
+
+/* start + form */
+.start{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.start .side{grid-column:1 / span 4;display:flex;flex-direction:column;gap:28px}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s;border-top:1.5px solid var(--ink)}
+.steps li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:8px;padding:16px 0;border-bottom:1px solid var(--rule);font-size:.98rem}
+.steps li::before{content:counter(s);font-family:var(--f-display);font-size:1.4rem;line-height:1.1;color:var(--gold)}
+.steps b{color:var(--ink);font-weight:600;display:block}
+.person{display:flex;flex-direction:column;gap:2px}
+.person .num{font-family:var(--f-display);font-size:1.9rem;color:var(--ink);font-variant-numeric:tabular-nums;user-select:all;line-height:1.15}
+.person small{color:var(--muted);font-size:.9rem}
+.formcol{grid-column:6 / span 7;min-width:0}
+form{display:grid;gap:40px}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:14px;min-width:0}
+legend{font:600 1.04rem/1.3 var(--f-body);color:var(--ink);padding:0 0 16px;width:100%;border-bottom:1.5px solid var(--ink);margin-bottom:6px}
+legend span{font-weight:400;color:var(--muted);font-size:.9rem;margin-left:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}
+.field{display:grid;gap:6px;font-size:.9rem;font-weight:600;color:var(--ink);min-width:0}
+input[type=text],input[type=tel],select,textarea{width:100%;font:400 1rem/1.4 var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:13px 14px;min-width:0}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold-line);box-shadow:0 0 0 3px color-mix(in srgb, var(--gold-line) 22%, transparent)}
+.err{font-weight:500;font-size:.85rem;color:#b3372b}
+:root[data-theme="dark"] .err{color:#ff9488}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .err{color:#ff9488}}
+.sub{font:600 .72rem/1.2 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;inset:0;opacity:0;margin:0;width:100%;height:100%;cursor:pointer}
+.opt span{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border:1px solid var(--rule);border-radius:4px;background:var(--surface);font-size:.94rem;color:var(--ink);transition:border-color .15s, background .15s}
+.opt span::before{content:"";width:14px;height:14px;border:1.5px solid var(--muted);border-radius:3px;flex:none}
+.opt input[type=radio] + span::before{border-radius:50%}
+.opt input:checked + span{border-color:var(--ink);background:var(--tint)}
+.opt input:checked + span::before{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 2.5px var(--surface)}
+.opt input:focus-visible + span{outline:2px solid var(--gold-line);outline-offset:2px}
+.submit{display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding-top:8px;border-top:1px solid var(--rule)}
+.submit small{color:var(--muted);font-size:.88rem;max-width:36ch}
+.done{display:grid;gap:18px;border-top:1.5px solid var(--ink);padding-top:28px}
+.done h3{font-family:var(--f-display);font-weight:400;font-size:2rem}
+.msgbox{white-space:pre-wrap;background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:18px;font-size:.92rem;max-height:300px;overflow:auto;color:var(--text)}
+.done .acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.done .fallback{color:var(--muted);font-size:.9rem}
+
+footer{margin-top:110px;border-top:1px solid var(--rule)}
+footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-block:32px 40px;color:var(--muted);font-size:.92rem}
+
+@media (max-width:980px){
+  .nav a:not(.cta-link){display:none}
+  .hero{padding-block:40px 80px}
+  .hero-copy{grid-column:1 / -1}
+  .hero-media{grid-column:3 / span 10;margin-top:40px}
+  .hero-media .front{left:-14%}
+  .sec-head .t,.sec-head .d{grid-column:1 / -1}
+  .formats{grid-template-columns:repeat(2,1fr)}
+  .fmt,.fmt + .fmt{padding:20px 16px 22px 0;border-left:0;border-bottom:1px solid var(--rule)}
+  .fmt:nth-child(even){padding-left:16px;border-left:1px solid var(--rule)}
+  .digital{grid-template-columns:1fr}
+  .prod,.prod + .prod{padding:30px 0 16px;border-left:0}
+  .prod + .prod{border-top:1px solid var(--rule)}
+  .grow .side,.grow dl,.start .side,.formcol{grid-column:1 / -1;position:static}
+  .band h2,.band p{grid-column:1 / -1}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  .facts{grid-template-columns:1fr}
+  .facts div,.facts div + div{padding:16px 0;border-left:0}
+  .facts div + div{border-top:1px solid var(--rule)}
+  .hero-media{grid-column:2 / -1}
+  .hero-media .front{left:-10%;width:40%}
+  .hero-media figcaption{position:static;margin-top:44px;text-align:right}
+  .compare th{letter-spacing:.06em}
+  .formats{grid-template-columns:1fr}
+  .fmt:nth-child(even){padding-left:0;border-left:0}
+  .trow{grid-template-columns:60px minmax(0,1fr);gap:4px 16px}
+  .trow img{width:60px;height:48px;grid-row:span 3}
+  .trow .how{text-align:left;color:var(--gold)}
+  .compare td,.compare th{font-size:.92rem}
+  .grid2{grid-template-columns:1fr}
+  .sec{padding-block:72px 16px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cross" viewBox="0 0 32 32"><path d="M11.5 2h9a2 2 0 0 1 2 2v7.5H30a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7.5V28a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-7.5H2a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h7.5V4a2 2 0 0 1 2-2z" fill="#c9963d"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></symbol>
+  <symbol id="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></symbol>
+</svg>
+
+<header class="in top">
+  <a class="wordmark" href="#topo" aria-label="Clínica Blues"><span class="c">Clínica</span><svg aria-hidden="true"><use href="#cross"/></svg><span class="b">Blues</span></a>
+  <nav class="nav" aria-label="Seções">
+    <a href="#formatos">Formatos</a>
+    <a href="#tecnologias">Tecnologias</a>
+    <a href="#digital">Prontuário e agenda</a>
+    <a class="cta-link" href="#contato">Consultar valores</a>
+  </nav>
+</header>
+
+<main id="topo">
+  <div class="in">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="label">Serviços para médicos · Belo Horizonte</p>
+        <h1>Tecnologia, equipe e apoio comercial para a sua clínica <em>crescer.</em></h1>
+        <p class="lede">Lasers, ultrassom microfocado, PRP, enfermagem, prontuário digital e consultoria para captar pacientes particulares, com a estrutura da Clínica Blues. Se você ainda não tem onde atender, também oferecemos consultório pronto, por hora, turno ou diária.</p>
+        <div class="actions">
+          <a class="btn" href="#contato">Consultar valores <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="textlink" href="#tecnologias">Ver os serviços</a>
+        </div>
+      </div>
+      <figure class="hero-media" style="margin:0">
+        <img class="office" src="data:image/webp;base64,UklGRg4cAABXRUJQVlA4IAIcAAAw2ACdASpxAQgCPsFeqU4npT4vJ9LaG8AYCWVu3Nc8a4QVqIBSrDddeQM1+4OtrNIjqa7tzC6HdlGOaCKn+u3EFpNp065lwT+MiJFbWwKDNYicEoKYKCNsiYIVmJElfrVldBmqvbqkKPX8rRDOnsSI0G2HgX6m1FcDaskC9evPxg/S0aU6hz796jWqG6aQeDD5ZKscuwH7kNrav4vPjSyR1drKZvKPejvYKTx2m56qsFpPS6tquchl4j0Ne7pxOSC+2bGt4XGFhS4RRyF20B1agD8HslluuHWA4x3jXTZrC/nJ/LTnfobn9sVo9z8Y5Iv/wSoyDsicV8e5biygi0InlL5RjOHtlAtL2yNI3z4pCGeVleF7/sas9s3xLXJLTLkgEGwaSNwfVBbRcdOD+kRqw5e7Zx5BOlqOQ/CS7QiNBnHpxRcex3USEJ9Q5rO9jK6b7hx2H8yl7OI7nQBnuN5N46Yg3p+DKuWfx2HgsBtXmLFUKRQua2kCVNDMS8VdBF8WRMcn/1SZ6ZLVLbp9rykJjBKmlNEAe3SKDfKHs13fmUc3vpFLqsbqcQ0UNZySjFpXXk82QZJR9pUuyqdbPEjJp7FEKjZvpk+YNRxfY07u0IE1pa9DKh4dpOx1vlniFmtz85cmkbGdrvmLGb/d/ZwC54Xt13hlt7znEm0lf09d+adnlF0We+pD+UuVOZtZuKvHbEMnsxvR5dtJzbtUIfd+12rAfyuwG0zFgidSgI0dtIw8skpc/9XL/0/7NjUVbO2eHt3nfGFv/HK3ucQQRJfDt5KKLCv7EO7OQ427mmPN/bIlB15737B4ARR00gNyeVslwB1EEtDJ1F0UyT3St2YstJ0ka1SMebd4STUP7PJByrU9yrKYEO9o6eJY9XETFFsi3RZcvhsZuJ0uFmpBnwYQqJpEnY1XnC5zS4U4n9UmYBHAJY2GhCMkwg0XvORxKamvNsELR6Qc8YL6rboYrQgY9PEz8Lbf+AiScxlbwFFBRqBoX/b9TvKYMcJIV2eZ/KoBmgWoX+bZnoSUSQ0tMYVlStLT+EeL1oaXGudVz22ae5NzotSfioySh/s/79mfP59O8rvjPXyGthV5saxuxBAZzXuvyYEt+N1A+X4oHfdDkIEVOgjwon/rFpTaxOVSwX3ILnTJBE2a/ndQOQX+VhG7d9F8T0h5tStJK1aIHdiPjfkUDd5Sb2IWZYbQDnyqSs2nA/Ns1Ry4wUk74b+8Zn0/JTbGrWZWs7wpX+jjunPKqLe0/LsLHo5Arkzx4Eh4nbq45wABhS8ZtwKrCsbFl3sMcu669H2LHPgleTCOdPLl2K4DwcfvCYx95/xvhXAL6QKn/bO8ZJWykbMjzViTLPwGyWexTl16MKONUQoK3Ocbu2tJRqOqp+yVuXM36gKKRo6G7dbJakw3w6pSvGInU1M1+dGiFxw9y6kmgzHSVkZ0/Q5nu9e4iHIQz6VFhiFiIEwz7GNn3YB/TN2MTYYnNLcOz3ZiK15cW4CQBasrVa+jkwxgtWQ4wrI9NXo6QqPJ6HYt4yM+Z4GwTSNSSFrDBP42vZd7TFCIyT1+C2+HmxpzuW37YA5G+zbp6YQ025Q2zmEYnQ+GfAlv7otAfX0yi6cjXOD6Xa0Bzmg2X2JM+Uo/X9PqMRJtEBKUekU6V+ZvIPKbUPxZ7KE+G8jZtYlXg30xuJ9vy0+xKMHmtEUiQqbZrk3aHixQVKh9pD4Ykf9wFQp+4p2lo7pRfT2NWG7E1V0PYfdj/ZZ36hLGZfcsaAQ8QEx+8HdeEbFDHF5RoW+sRIYtdrOc/6Io2iEqcudtBwerzP/btldby/fFyNTD6m5DRcksXUcR5TxTor/r2s1B9gDpMOeMBLxKJhYWXlwAQaPkJvxNpzJ9SHKWXj+WViGlkOSAH4C3Cjk79heLq2KnUVlWLFzHbzRuH4+m0UAzhn33FK1xsMof/oAWEMTL7E6IFMQFOZzrzRN+HD5pjx+94bn7ZhMk00L7cNMIi5qMZ74+xqDfN9BqqxJMnW1dlFtlhb3ocTGmK1DP6/jYJzg36VDzmHpb/jajzEQ49g+setjQrybzPqurFxAZ43XnUxVNN4RnYdNH40HnvYGgpcxmlK2xmczNtWVTy1nDBzVay2NYhB+7Rxju8bqvfloC5fYmFp8EZQjrBav+oDY57pRjt5SBQ+q2eZlMzmeUJ4aeW49ezfFgHZnbI1d74uBk30md5RlhRfSxJu4FxktvP7+nffrOiZ0of5Ah+DJ/+e+HTxcomiEOeQkJC+0kgxh9NPyEY1jL8yfMOHI5BqArGhRwjWRW1phs1kZbPzNwAP7r0Emx9/nDnfnaBfkcgs+nIDbW0CXDSsa2XIafPiWaVWIDki6jD6+NgAZap8gPiRRcwjfw/FGZ9GeZywLWzzZ6gKiVYpKFq0jydPJFgpdSq+nu1QnuSLrAGM06KhPw8hH2abUGKU6yle6bebv3obG+3iB3lY5mWSR7TY2i3YnTe9pCpnAudlBRB9mSSqabha/akO1Jmxz/JtKHbN99fZXudeDkPYPvRfr+XKhY74XSbpwUiNHTg8WodRxnUG0MIyzp1YU3JW4bd57VrJuvxi0PKhqUug6pcoeA1OZPSR0OctJgpNakrWEDt3baBtvXJvB+gFpAPVe8wN086Ly0hAwGbun7v4otgGt5DJbkC7BOsu7Z98zHZpfjoqt8BtfmoGisnVavDifcy8SRCe0DWD7L9DWUC1zqzhmQXpNtY1SXToXDwzB5jdpl5InMX6RiAhlk/jzIFd8guBO6ChQgz7KzCdaJaxzgZs1fJLlMo0vaVuHoVuRPMp2mgbs3p6yuu+fn3kmo13VPOfcEybhCbx5CVhbJMsOa3R0xQTNXwhcK1v7qwWq0qQTl5a7Ru/6i/Ycb0X2XItAGs7AHaR6KGQyBzCB9n8Lkt87419iD1gsL28CBeoHDOUVU5R5NPySfXf3Sj8zNmE3+qeOaP1Aka9AbWX8VbEPiOVfmZ7TjE6KM/MSbcI9vmfypu8hoRINnhddsYTbMSPA20fxmjhKKNCIJk8PM+XWU3IBJRcOmbNwoiYY9kXRSQnolYENQHO5fLAtzlCQA+0WqdYi0qStWKJJ2hk24mJ0gCw3C+tBilBezva1N3LDpb8l8NSilx9quC90pBkoWtIr7viTsaQUAAH2SPXauHVJei9A5TGTAuUcrpkxF+XaqBJ5v+Q3htu4fpaSd3g1h+7EpHJJhSlK7u2HarUyJkuoNPgsZOgzz6zsgtaFv9cIjzMTPZeGwEiIsSjH2EWl/o8RgNSuSH7wDAAKUyvhIni0L2hOHzphFhVCV6jXZdNFN4kEsS5lA4gYpT3f8sU3pUtMo2lrZ65zYsNW9wLkvxFemOWVrHLy9XSI3hRHQ9xiGWIEIT3lBHxczicUZfVQlDSh5QGawf0Yj+Ws7Hl/dNZ245h3yD+ok1MVX7tWiOTltebonXmqUSEX1wzJASxMw1SnS+284c34zcxvQXxxvUyRs2vVa11/1zLJgK+SJH8bHWwgBtr7QU2pB8K8I8R07RwR7rzaYAtY9c7/33FsK6CX+MOFFxVkeLmFIZgMpa59r/Njr/UIsi5ZOmlPOFGnxLOb+LEdiFpDBKBee4/bKVhWHH4kP9G3LaT5CpQY153lL7dQmagPFsFd/3W6j2U0gdR0KN4nOZvehbNlIsOHJpzX9kIIMxohRMIPGXmrh28tbSGLc2FEUs5PwhLy6sqUDIKYRXSzsAROUdnrHpYwlbjoKkPuKQjPZSb8zcNU7QDi8zYrIAZYCs6d4BVxPgoj4/4Ie0P8aB3yrMFa4mIEpCt4ZuwzDlCjyhUiRzGLikRr7RqhUxxmgY2+hiTZ6nXj00JF2PNfUZFRCC55w9JEVsNinTsFLgSlqREilUjz2KJFzxz+LLabp+UE+DJb7YQsABpap+dMeR0T/oz6xnw9NDxsHen6yfdUITkU2BDRFw8siSCjZxC7PqG9RH77MurGTtFKgUWqyXTb0wlachKzA84Y2fn4OEQKDC8IFIUJ85AkPlWWnvHHqZWV990APLn3NK+fCKo0LbG2pxx8EUlE6GoDtqVTOaaMw1d8+Xrg59YrQzJ9cpyu99Ta8xcehRJ/GSXXB8jVPvwNTSIAz+zw1KWmzxqHQW2hoa8MvyWLlZ6+FQOOM0Pp1zZWcABywdGQt/37R15ccLf43T8VPpCb9TQQWydNTYcbLXFkY/EhbiznL4zXEoA5DZ5d6WPpP9XA4Jt2bjpuVzB7QIva4o5Nwtl60mTBu8YSPmjZTDQ1PiEfTdHaFnzyOPXVK8XyxpbohbTwJOHIw9iADRRJghH6puuUgDaL0lJJ6FxEG+x3jUdzHM7NRf02KurYe1h+8ZcOKTBqld0JW+vFIvbXvoma5dWUoY2q+dJoXfqenv6MfJAjUJ+pL17GxP+wWX0PAMwtloI8MW5eP6QTRmpv9/3Bc2aTHYueJHq1T3WvvmipuFL+0hzEM6ahOl9lGMeG9+bQR7dzWXyJ9p5qGktOh4Q8qQhfSP/v7cmEOJCJFALPNkyJBHZnOFM85VqbJqu4YCYKCCLLhTEj5s7FFfneTn4qJVdSbz9hnAEbUETGBEaQ2+fW62d/8lOMCgBQgTWFJkHXZzrCotT501ThaBkHU8EIpBo0KlBK0SHh+qFAbVs0GBMNzMBy0NLl4kiUNTGNblH4I13csS4mBd1T1WDRwHimqOn+0eUjS7Xt7hzufRmXCJmqVdpZYAUTe6VkuxwWXOsBP1DOAtmGVJQNMrHhMZw3Hjr32hxylBhVg0Wem11QlNJv5IfboDxZU1coSaeEedsMbwLtvkLF6Gg87faHjOvHPmfv/rl9sFXqfqhqnYB7cAvTGIdaoc7+HlcyNUlpHtHUCoALf15qPJ37IoOfJx60TdYUZ7t1wgJuzmJn2Lg+RZCMBjCKRF8ZkPAnKOyBb6nx7aRDgAuyd8sVxtyr7dPxyFq3e6AhL3uvrDu8M81MQwUnmaRqvtAAKyqPoGKqzUdDdq11j7jnnWGOu9bJyK5EAPgJxi4QRcec8m51JEWJG3VYP82T6ntIHOAnVJtsER1Zq2tXXPhKvn4kfVPdT0CcFxxEF58d2vDmUxnMdL78UXiNlM4P8SSIHfpduEzaXHKNCpCkiOXSqqfbcXH5i8bjB9k79pNziV8/Z+ArS63aCJX53g7NX2bXzUv9p/u3I9dU36DFuoEKSsHt6DNSb3UefiKJypBhac+QhQ9swgHsM5c6pEDaPOtDNsEZdo0XJCbSKBqOrKaVTaroGBIJJr4CrLNHC94fcpBZdpgYQeWi3N7OiHoF931Eae9W3xg/jvrrC9DzYqhjkeNexe04C1aAHEGMgo1b/WmKura3KKZ18g8lK3cOWDzEjqwLQYpe+lONLs/BPB3iZF4rGdhftj2qCS+pOw11tisakqqFXzSKQ9ydENWWCq7dk1bMb2mm2rDbLELbPqUxhy6zc32z6LTFezfmTqYfX98+rz0BBasM8cDHWPIuVZGtA9oYe1Fmvr9L+v8qT59kARW2tQNDzxzuX8p9EcLML4J5f1+nZQJiYpwlrdkHTInXtqOJ5ar+/tEvmPaH9JICV32b87cQe33V5BrDXLNgmzIb2zMD0GJx5B/eoH8pIi58N+9syJ1eJAFI6nfRa/hGQbil9jHKghCTqWMqq3gxNFswgBnEmKZKSw65uuVcIDVSqbefk/03sLWzHtD8nHHqWa5FRf30iwd7juuK3fBAdDaxNAkTsNIV3IH8U0GF48o+uCf//P+wtgQj88b6AVIInQ+dh52Pz7A3vn9re2j03FmlI+xfHlFB4/eT8mMHpoRGDstN0gtk1Z9PJRs883W8LgL0B1mOyqVkzIkRA4X8hZBTCpQS1DG0QtDf/rTNrl2pGIp3A/RFWREwVdOLZoqdhYmC9wL1oKdsrE61TIjvixKQ6n2Ml0+2LSnlsvHdq3CcAe3pT2+kLp2UdViGILJWAqWWBdlJYnx/mSDA3np1x5rP5aCX25JYXy4vTjLMAOxIE4PDLF+YHyHvj4jdQ0rAnx77ePyBeWLPQiz+4QanwKzDdmJFN5iWLuKQm4iGJ2it1wX+vfNyoS9REmNNjnxhjxBBSVqUdTRk0reRfN58yxJgmmHbFejJo2UuMW+j07uGtjFtfoCcQRhATCNPY0JnM5LHDOyEYF97mBdAW1gsGZAR3Jperl3QTM8/Qz+GRMOe78rtMZA/fQf3XxLZcH0352xKk/PtB7vqNIh5zUD5jRmhzNAUjtmP3/lnzARMXtQaMteFWl/kd1ca8ebieKG9DNQwS/udvdJqj8xB69tXwxI3QU9sQlbGO0vvtymu1AbfcdCXSf8yCtgCeYwzoufAm1QgLfC75gppqMc5n05AhMkEFBbqDWOUPIDXepISPjcFg66uNBg5n6+2OzTEbwiLSocvcJWA7oX3yPbcExqv/6IbnTwqteqJU9s1yjcauHxEaKyH1zsCax4RlVMhOUYhStNnev9TVxk49HVXf+pOnck8HsOCLDMsut7IU09QjdHczVrSQ1qhcdHcyCLC/hh9QSRzTbJ+A98BRxJAU1er+ryQ1YsfAgVBHH97X9foP3Pergidzv+fsXI3jTX0WHbU55IEYQ7aif8ZVgxVMDXdSolLRypJDZRor4gHGQBAcSOchaTGJERKqWkCg6gNyFkL0gkrOIqkTmF+JLKJLL8SPSkq0f+MqMkWDwu88R0T/1gbeO++ssmhsmWSRWdVXFxO3yUvzez/91BE4z29A2RroaBd4IExYqzEQt7QaZANVkzREuajhvUUJOOVoRyDtntvFDYUK6dvSJCbTdqCzOAVEyN4FfDLcoauINJabVTxNCzyJno0zP2LGlh0hwV3pWhi2KQYpsb7fW/E66rGzdgqLzTXyct/xX8XLf/8/ORdhIvWrkUWVwYIWOhUzEHu/A8BkMV09uPiDH/bv1eSR6XuQ7YHK6bTsIK5lMSR8xJ/wbpeT8X2uvRo10ZmOMRJ7TTitBRWrEGlz70eHGGEfvoM8QBxzH7xjuLySqGivqI+YT9y/4q48xslyQSZdR38lckVaXnvRHxzXjwgnMfzohI3hxX/wc678icsrOlwz98e9WK0Ww5B7Wp0cIjbVRKJt2YK5zm7ucgBMh1P79hM2bvbayYyd7xvZQxjDtHUeWU1y60x8NfXjNewRohXryOlBpSxtaw0mE8vx3ZFPvRCSFvvQtp+znEJFvR/L8sJQQsMl1kqUIeRuiRTl3EX/f5qbQUh933ayJGUT3rZZUikBtLr6CpHk6k6c8LGtrNhGybnQuO8Wy99Gz7nFIsJsLQUNGbcRSUT9yB5KS29EevUxyq6SU0Wd8cL8/tWZK6ZXf9aeBGHgP/zFJ6uJNI5Y5Nnfh5UOuPHvDZ2ImTE77qjdcj/yoelC8p1RRTdSHk/TKxz9x21NEVw9bbz9OLzFAac1Oos8zpa9LUwvLGD3CAbWaMIToTMYUyiwHKOtrw1Wv7m7rCZzxOx3SOzT5/Yujc0er3UwyBV/aMfTcZAsENB2NnIxLN6JRROirIU2Z+MD7znwPnbQOl/5w3qF46vNlt+a2ooHmZnx6GTevgqX/qIzcIrOLySnF5kUg05Z+tzlif3PbLXik7SpoO97CFdNEFtjt8gqhIWQTko9dnqums6NjB4asiL2OC2wytSmfZqVOy4BjMxx8HkXfdHo7vNNUqVAYmNn5lfdGIghoalHqqC5qhnbmQ6zKyQjiW+O1bOZ0Wxirgg+ZBY4h/0FOJD/KlLpLCPztZmaQeOYqwGFCJ/AMCKRtm483QjO3KyjVKGEP8gVyBDrAWviiKFyaYcBHlHGGBd/LDjV+3c3swejWujyDKwOLlOwDqon7rGSvTQopIlOaNIjWipcnNqx+7appjOu6JPyLUNLdLaucLB9eC3m5AOu0TR/FJxPEgF3yY3TA0sdE9+c6Aw99f57EaQ/Q0en0keRO2P7K+UDcZFyXG0ptNBLqSFbwobeW2zNrNA1tTu+U0r7g+c8hX0VkxYB64vjDHbANlSam2SaIFaSnS5i6rLiwnM32CbikQNNIkbslg15UFJn9h06QzL45EbetQLmN6umFZHcU5FjJMm6ox/ETNdL2zMDSdz8RJgIPECRpCPri5aTEMziSy4H++CAPibGHUM6hr+aD6VvpG1ZjT1+JegKRI95D6U47Xakhd82sz3mfWHmQnNU5KZqUnn9lWg25bFMUQuaT2orSJD0ba8Z6xm5FfnO+0pM6h6YFk4l3Fcos9D20czu/L54uYHElS2YkcUHh9ZVLhN4DcTQWIiW3E/v8PBj6kQ4UWBMALqMA6LowCH3A43fc46MwCj7f6gtjzWFy5WXdTFLsaKLu7sLq8tr2b6i8NJSOqjCe2bSOVD9UjYwUf7rKXDBhxv95gJrKgAb5KeZzplFJR2WVZbeTl2l0iPgR2WPKVu4tArNA1ZLXz8zykBNhMaeUYJ029qswLeSHt5NqRYJSzHUyleB0lSjc27lRBYx9i2yOvSLH78wsUpUnW9U8CXq1pD/UANh8BKjd5qugQmSfCRMJwSps+4l8S3FFY8ulGImlb45GNmkofaXdlbwACZTPPNjb1f4abR88b4Iqq9E74uNDyuVpWuQ6rGc/hDg0aAkTgij/RWWJY40wqLJzUEPBMtCBU1W+Ge9IRtwa5W467hGkP2zrY0vynG74ZHrr8bcjC6j4igCNMgZVOzbJZnTPhuvSvnsiUcmz0Hxf6dX76ZNQAJZxc8SaN5SJtMjNDVyqSsNbo/RyZiEFyMqk7/7pHIgeROojS61jfmwa5m2Me1pEsJOCjf3dUIPS1taKyVqU7Q0xakC0CaWSCnD58z8MUweYHucbq5qjV6oiie08G9oWwSfm7GeD6zxAXqZJK9GuIQrOlPRptC7zwkLoGldvOh8BabhDegAoTU1lnSZpaW+DyU5oYhkOv1gkApPt2NYoV6MoZcH5ZAEhXgFKdd4L3o5KADjRzG43q1BiJdN7qFFN3sNjjD6TTK1Ii8Bssfp8Lid+NOyWnuKbZ/syyDSX4lzr3E6Fy22jrlaYW5Rhc/Cl/wjffv5Ms9q4P2W4UKizIFd5iLtYYEtS+pKHrBSRlLOavV5rUHkTO0FX1498x/xagDUlRnL0B7/uI+rQsH9fnfsyRZkBApjuA2510r8JVDM+qdZASDEX3FYUcAiuRsc3GfU7YJWgGWWI2Dr9qh8UUaItpBQRF2qh7oFU/o5CpcTv3hlEYYUT76d70zXlgS8BV35qc+bbzJufd+TpNTdE1nXALCmamA4ILI3q9dTU7WCgC1Uft4Pc6l5HkPNgVQbk7cNJeaR3Wy5bZsFfWO8pmkxvV8mLthDkgb+/8qHgVxen+M8QxI3KL2veElam+PWN7ahcNVl4rheVlYzpp42yP2TNfbr1RHsatdYQpRciKRN1FjQGC79FYTlrsfAuVrTAmmFNAOfddpcR5YQuBpMU8LW7jEdWuC5kpansSdY8xAGkKKAe8xGj+D0AL2kPV7GCd0DpljAdPjmGy1Gz7IjDWcb0hZC5ksNs2Dnk6q4Y9wAAAA=" alt="Consultório da Clínica Blues com mesa, computador e cadeira de couro">
+        <img class="front" src="data:image/webp;base64,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" alt="Fachada da Clínica Blues">
+        <figcaption>Rua Padre Marinho, 165 · Santa Efigênia</figcaption>
+      </figure>
+    </section>
+
+    <div class="facts">
+      <div><b>Tecnologia sob demanda</b>Lasers, ultrassom e PRP pagos por uso.</div>
+      <div><b>Equipe e gestão</b>Enfermagem, prontuário MediBlues e agenda online.</div>
+      <div><b>Consultório, se precisar</b>Por hora, turno ou diária, com recepção.</div>
+    </div>
+
+    <section class="sec" id="comparativo">
+      <div class="sec-head">
+        <div class="t"><p class="label">Por que atender aqui</p><h2>O que você deixa de montar</h2></div>
+        <p class="d">Um consultório próprio exige investimento e equipe antes do primeiro paciente. Na Blues, essa parte já está resolvida.</p>
+      </div>
+      <div class="tablewrap">
+        <table class="compare">
+          <thead><tr><th scope="col">Item</th><th scope="col">Montando o seu</th><th scope="col">Atendendo na Blues</th></tr></thead>
+          <tbody>
+            <tr><td>Espaço</td><td>Aluguel, condomínio, reforma e mobília</td><td>Consultório mobiliado, pronto para atender</td></tr>
+            <tr><td>Recepção</td><td>Contratar e treinar recepcionista</td><td>Recepção da clínica nos formatos mensais</td></tr>
+            <tr><td>Agenda e prontuário</td><td>Assinar e configurar sistemas</td><td>Agendamento online e prontuário MediBlues</td></tr>
+            <tr><td>Equipamentos</td><td>Comprar ou financiar cada aparelho</td><td>Lasers, ultrassom microfocado e centrífuga, pagos por uso</td></tr>
+            <tr><td>Enfermagem</td><td>Manter técnica na folha de pagamento</td><td>Técnica de enfermagem por hora ou diária de 6h</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="formatos">
+      <div class="sec-head">
+        <div class="t"><p class="label">Formatos de locação</p><h2>Escolha quanto da semana é seu</h2></div>
+        <p class="d">Comece com algumas horas e aumente conforme a agenda cresce. Quanto mais fixo o formato, menor o custo por hora.</p>
+      </div>
+      <div class="formats">
+        <div class="fmt"><span class="n">Por hora</span><span class="h">Avulso</span><p>Para consultas pontuais ou para conhecer a estrutura.</p></div>
+        <div class="fmt"><span class="n">Turno de 3h</span><span class="h">1x por semana · 12h no mês</span><p>Um período fixo, sempre no mesmo dia e horário.</p></div>
+        <div class="fmt"><span class="n">Turno de 6h</span><span class="h">1x por semana · 24h no mês</span><p>Manhã ou tarde inteira para consultas e retornos.</p></div>
+        <div class="fmt"><span class="n">Diária</span><span class="h">Dia inteiro, avulso</span><p>Para dias de procedimento ou mutirão de pacientes.</p></div>
+        <div class="fmt best"><span class="n">Diária fixa</span><span class="h">1x por semana · 4 dias no mês</span><p>O seu dia na Blues, toda semana.</p><span class="flag">Menor custo por hora</span></div>
+      </div>
+      <p class="footnote">Recepção e agendamento online estão inclusos em todos os formatos, exceto a hora avulsa.</p>
+    </section>
+
+    <section class="sec" id="tecnologias">
+      <div class="sec-head">
+        <div class="t"><p class="label">Tecnologias e apoio</p><h2>Equipamentos à disposição, sem investimento</h2></div>
+        <p class="d">Você usa quando o procedimento pede e paga só aquele uso. Nada disso entra na mensalidade.</p>
+      </div>
+      <div class="tech">
+        <div class="trow"><img src="data:image/webp;base64,UklGRtIDAABXRUJQVlA4IMYDAAAwHACdASqQAFIAPsFSokqnpSMhsBl68PAYCWcAycRX0zNOWM9uQ2HydT9L+p4cUEqWCxSHX3c94NlmG4fX4Brl0aEjSFg6G/2jlz/45IL+R0501XCKyL6YRBZhn5y2cIIlakXtH/LvOb2/9JueQqfAA3YQBl4X1jvq+avLCkof0e9iwrzpx8u3lqBo1uNwHi/uM+p0AEABK6RhUPgu6Iq5w1VItfbZQaYErXnRGRh+aruIMvKFaxWEsTtAoAjqXqEmy6FZAYWcDLKFwsvOv3l+k+3bB7faEeqxekF+o4Tkpx/Ng45fmBL0q4AA/vjaEghSMXYjupcNzCvUfo+g762HipbRgSRvWj5Au4hD282VIKWZm5QDT1hTiNtndqgteRcyeaDf9k6MR+oZ3EPjCsTRARHfTETkol4oUqI6bZSYB1FU/Sx4TpWSlWdYFj+8LR2tW4LHbAp1pz098PPwyFmBKzgVBfo1NlDgGrQJxDvdm2zKi8kx+M8boSuCzo9BKwXItdii8OK6iL3riRPFevgMQTa5rJdadS4EQbWq8lb0L1rjvslJkuEJj5oOPnbX0qy2fRRwtgl5+S68Qu7WlQsb/YGUiI3IAWvMUPIBHBZJ8wO+Xxf1VT8bvDVLBdLqTb6l7EqJiwhc7mQ2Lj7rSa4cjLVplDIR4eOyv9r9ya9TA/xBjyLKh3Tmy2a6qsHM7OLPeadTv9SRFPWDCsHGJXXAwe3ktKbQUYFOIgsaQMu0WPSFg50JBpbMUInwTleFjYDqe4ZqZ9oTQ5EUTCJ/6nTVm51IKhzxmSnB0yfMSgOABMtX2DYlA/lU0a7ohwm2Et2NAlzMR+1AGKkAUPxbDJ9/dhV/4zmJ9GZPq40ZHFTZcSYoaJyG2EJD1thQ8X8ZHOS48WHmobJHbW0pWd6IkVMLkgPVKSfGz/pNywNMMSJ3ALwDRC0BNDi8u1fNHYOJg+yIEzi8lba+9Zru73gyC/KdyQcFfUz/6o49VtqIUVNxhc4npOmILxctr/lCXYgJ/r5fivnVCtn8uEfX45FlSTJwp5fOvtWRMSehKObMGqM5HAEI0nRcXRzfhY4nAx+nplsAPjVQ0QX5qVz8Fvfm9UeGBoef04h+09Vi5VbWJdqMoxvOwQnhwfnobtWxeuj/mUognQlD1c5oZAJ2AUlsa10zWBasSIT8R5Zr23PK7FYQGuTJDLoiBdH2Nw8lSP5jO0VRW/OGk+bfSY3sgdcw194Dk6C07oHEd53jCunlRYrdaeZx5HLoJ8Y/U9oVXZKvx5+DQji8AAA=" alt="Ultraformer MPT"><h3>Ultraformer MPT</h3><p>Ultrassom microfocado para flacidez facial e corporal.</p><span class="how">Por disparo</span></div>
+        <div class="trow"><img src="data:image/webp;base64,UklGRrwDAABXRUJQVlA4ILADAACwGgCdASqKAFgAPsFUpEunpKOlLbQ7WPAYCWcAy8IfYde7Aqam9cNfSDISDrevNMXXTb6evmTb9nf6l1tKSFtE2LfcZIRmNLZO6p2q+zq10SbLrX1A22QjNGuG3UsFeJ4mqS9+MQyEYMwfps7AEqZu+uGK+gaXViH3BrBYVOPxAQ/TWh12OlPqnx4826KSPrLcFZxa2wVYEokbA1FcJ+svBRHU+HmKQqQ93yQiF6y7csnTcSCldRqmNO1PRTtOUypujMt5ufdTt1sbXc+570WZ05xU1ghZL2Js1gcdcAAA/vga3fP/uRoa/FJFpgM8NoxYo6fSTs54GmT0YlaPzz1yjIUzSJyToXx7EQ+HokmlHVwvbqiUB8yjRO6WEluIy+6Pj/kOxGSKPgPM+SEUmRDAISVGmB5RoQVjRIwBTSunkXF/boARRpG7wTUda6uzHrM02jUH2aVyNt2yIWt8XLK6AEq08d5N4Ubv4KYSt4i3mzf0vhYWdQWCMUpMZ4Ajyujwlr8aC1MugWhM1kUfnlMDjZngvEHmrHxCuK9Dw8c17V0Zu62VjbOvCNRg9k51w3f72SvrTAI7HtbCkz9758Yp/zhlY9h2Z98Rej3fztZW4/NBLd0kRQmRz/R+jvYKu9N6z3sweNzFfT1hlmDe209eiOYwTsVVGJcjMfPewr9xugvJJ9CjXrSiXpdV1h+U0u/xpoIR2KVMLYZDUMsh38c78/ynUSvjPNqFG7dOaZqbt/SVLnVzdI2gWUe/kJUuQblRpznfkyEOXuVzj0tBfpv6HTTchkYXfSr6WB53Leu+EvcSMvqauRHK2/hsoY7C7LxLA7NT2wAs1ecr5KYNORzcUOb9UMT9SzfpqqnV8ep1FNU4vO2oqbny3jYcy8Ajclaf/fq3BCRi1b12tt62Si8ZzJIzPCrXCdPZYjsLr0W+Wq3pn5aVHxyMDJKc6IDgAoMUKJZ32m6KxtvIm3heyKpuA5WNcGxuQ+t4z9xaDex0fFvME+lbH9x+mZ17jb2cnrvo6V0YKP1Jr5xfIXv8uGosc/NvBzJOn8TX521OrXLd5cyIVVHg+WxCJXmf+EfscXwoeXz3xuuoRdRKtxYLCjrPbD8jOugIh1Uot6WFym28/J50ZHhUm0c5zk+VVSlprkCM7UEt74/p2GqNX6s8go/yUQ/50lU/m8fglXfj84pOHa0YyAZWKyg4+Rbo/Sg84c9q9KEbk6PWlPy9FeSdr8bCrwLS07L6rf9PLC15PFQAAA==" alt="Ultraformer 3"><h3>Ultraformer 3</h3><p>Ultrassom microfocado para lifting e firmeza.</p><span class="how">Por disparo</span></div>
+        <div class="trow"><img src="data:image/webp;base64,UklGRrACAABXRUJQVlA4IKQCAADQEwCdASqQAFkAPsFap06npSOppzapiTAYCWUAzV0dXEMFfq9SFZy3rRlMC1yEvt/rYmVx8AttO+AuQqCnWjQkClin3nxGSjoRuq9HXl2rMd1a7VJhlBVj76RnbTmkb38Af0v3FerlsE3RQrho0ZO+URu6o7CPpQr7k/lABuenmQAYc7jULCCpgUmaxeZSL6xI7B9nertAVQcBbxNDfDJhJw6OMxo+AAD+9vWQqgzkUe/5sW/zW3zmErDdXb92yoVX9lo4nV0h8aEod23C/9Vjm5j7j/JQOZ+Tmqys5SlmHWubIqAJn6Ty4rqzTuSMrOVkb+BpFfiYlx1lLWTIziPcloa19HhLPGVW5HnbngOLewZW6IZCNZZ2WuCkDj5CvJ5Rg3Sqzq52NktNqem1H2Mcl0P6TLj4MCyTeD6ougzNR8NPHJvLYro1nTf/yawvL86wGNkKPcDOTbeWSF30aLkomgAWYWaOhIGpz+fdQsYZYlrrYtkxtt2/+b+jYFPM08C/X6KKHea8oeEvt3qmR4FjHtdwZvjJd3DoZKXcq9y1ObBktSIC6CAZ28n9geHmUFo3dlfCnVaFjrQfsWC7NRvYS/wf0ITsEumar/RajQZbCr50OIFne5J3JcAp4ZDw/WzTI5SzAOYSnOXbJpljEmTB1QP5OBqS45/Qdvz0lerSaXoNv2MIn7G326npJz9v1/2un/EkdgU90hU/TlCZf1AW5bnu9DQE0CYjBqSw135WY7W9q80Dbw44jwMw+xaceF2BKbYAypyYYLQbe3IM2afDVQx1K6ETb1IvFE9ecBHcUvg9WJ7nzjuRlZQ3X7q6r2NoAJDi+vHuDbBy4j/QvS9Vznezeup6FeH2yOGYGcl6w5u6IfjAKf2Vkc8IjRCnJOoiAAAA" alt="Laser CO2"><h3>Laser CO₂</h3><p>Laser fracionado para rejuvenescimento e cicatrizes.</p><span class="how">Por uso</span></div>
+        <div class="trow"><img src="data:image/webp;base64,UklGRnwDAABXRUJQVlA4IHADAADwFgCdASqKAF0APsFWp08npCOiJfGq6PAYCWcAy6gSKh1nubZrXSgHGPesO0vfvVbt39+eOwAFOippOkLWaNRQ0th5ayiaax79H4IzqRegjW3sD/75YN6GPQMQ1m01PHMWabXZZz/owhjlgC9Il2dVjLVwvft2U8Ur2FqE/dTtHp0lDuIFXzlgpmqCmVtWv6CWd8kNj3nEzF5KkoEpgsdeCJet4f6sm8azOMQx0pJiRIAUTybBKKQrvSBZN1CzuwAA/vawk00teYIUfiLwe71POq0bakN9XWR9LgoepnIu/jTE2DgA5u6zC7kw00bNSlPCLz2SS8G4vkH4SEluCGg/G/9G88gVIJA+kw9ZE2lolxdTYzGHmM77W2UvwF8wLl1fV/m5/6zdsWp9oPPzqYABA5RMimUXCUSu94YjFPv7p1pyUBsHInh5pnWxOdwAOCZECLeSZ9+5I5apoVUmPvumvr6gd0225FOkwBJdysxeP78M9PQnZgqScx3eqQMjyev2Mm8gzcAaIZqqS+b9TK/GgdGs2kl62qRlOBBO1NFUPQNwjJL9lQsCizeixvGpWc3Am2CN3NaopZIGSwb7SCpxfsmBetsvUDmdrZ5Vpe0HSQto6iVLsrvTgpR7I1kX/ZAcB/GJy5Fn7FNdKGNj4GoG+9lz+cM2bJvj3tIJcNp5ctW5pK7EA1FXZlBU4frQ49zK53Tghmuqincy6Xt/HM3MRwrpIVQbeVpMlToEJz6x8vPOYai6JjcwEmcqpRNms5D48tFFd5olXmB8HmIShLBtpbSQGju0NhB7DlALptfKKjxWRZVZrQNGGP29DqmRBXfKwrTe/YymjtxO3QYb4s6Pis5boi0RKbO1LcaeJDZiGN3QxquFAwiCEPV24djJvHGVHfQUuaKuPgtFmqYfx1QJDiFHm1Nr60c4DVVOqpeNctQeUdIc/B1PuP/Xn9GMgQNGMKY91hSHazKtjmQw/CNr9TvL8lSnst73pXxuawouWIKfbBoVYiflBVtpV+AjDeUedfAN1w5/THscHCHgK3hCr9gg1hLtJZoYPYBSkSvw1Sa0Rl6E7jT5W2Jqr16bY5SlBzfv2CI0cYdIsc9f1uAZxTjOGRcwI9mzdr6QanNZ2VU5fLHtGPkhZeEM1zi6BGSSakf/4Fx3ZVhLFmxuAAAA" alt="Laser Lavieen"><h3>Laser Lavieen</h3><p>Laser de thulium para textura, poros e manchas.</p><span class="how">Por uso</span></div>
+        <div class="trow"><img src="data:image/webp;base64,UklGRs4DAABXRUJQVlA4IMIDAADQGgCdASqQAFwAPr1QnkqnJKKhtLX42OAXiWUAzuTtn5A1f6fw9LT1qv9Dn/DCgXMOcjVautVpoN3I63Xr3m1gu2Vheu5lZiqWCsFDR3ojp31hgAAgjFnOU3+Q1P7lRT0HXFZjKGurZTeGC8UQl6wYobAkRXry7GVPoxoFaBujbybvTR8yNG1aRpfCd0Rxx/52U/7UY4+MNUaDwcbQAs/qtGmQTqHtRjtkVk5EA7GVu0iqlwipNOVuEx6XdPwzvtkWxjK3Z+lk/fnhNDzVdLYDC217F+Uu+H9NRIb6padwAP79NlYe+sjpfGz6fkdLDEqm8C4nFNCsEe9tJ2ix2rMoA2jtF5VuCwPR+g+G2qW+GoE+iI73aazq+27In8AVVMBfVVNiGRPjs60iRqcArAdZD0z/3dLHNZ+gvvFKGtOlQxtIfkSmQG5bphk58DyP9Lm/YuRj/440P8XzWGFEGJEaEsdCyrlLiDSPkXSq7RQiy5X9QR9miBzkbaC5y2Ks9dQV7LwvmTDceuLaHX6Zik13c1qEbW+GptQFIZA1tEF3CiaTkvoNLLPDxXDJtr8ai4FbR/4AFGNwW3fz+sxOjpRJeJ/O5+mDkMt9nkic96C+Fck77VC/opiME0ih6LzF5F7enCpSXxe6t3QJdpqPVTmf4V01fXdCI7CsRQj2vXt/dYnA7ugN825qrqDDlaitfNHvQPeyuvu7GGnjQUzCfHeTJSaSqF8W33VK/nC1BXJNtCSJj34ox92i7tH8VUq68Xto9fu6MXxw1yxm3JQhIzAJQMCC4o3A8MuVwaxHdMt40fHkt0J6dW2q/hDCS6o+ubSQNAvbolq2IFkKuoyBfuOVqU51/i6ktxjOPtVdT2qo935iGd05yW0DVSnZCQQ5PtoxVz9QbLzb1QNExmDdn+A7qECKUTtq2yfvs60G29x69iBuXg+k2q7ff7Xd7si/RWc0tKLWUOnxOBhBoiZV4MF3ClKCJe7A0VNOB8MKueHLGKXuQnAarveZ48dUbSixcKetdrAx2Xfj9qK8aARCHQFxXK1LwJ1n7K8FhyrqwhGZnp02dTAs85jm6nuQWGzQ7FUpdjB73Lao4s33HuhFXR2FZuWBl/KlZgI7EiO7cZ/0VI62m+gW85Hb3UsayN1nIJxn2VJ8YDmRxOdnSIcUH9epxVKM2n261Jyw8ZEB8C1NJhxDlG+JrbKy06m/ApAuPTNpg4MI00cmxT7sldyvV9h4ikB1pvAWudquI6jklrd2pf0ZhQbO0XbGcclZcN1kcAAAAA==" alt="Galaxy Fiber"><h3>Galaxy Fiber</h3><p>Plataforma de laser para procedimentos em consultório.</p><span class="how">Por hora</span></div>
+        <div class="trow"><img src="data:image/webp;base64,UklGRs4CAABXRUJQVlA4IMICAACQFACdASqKAGEAPsFgqU8npaQpo5kqSTAYCWUAzQwmoCxI1bDKMsO/v9zWwuywlMGHc/vist5a0RLz3fMKdUGqxVDRxqX5VmWgzG2wDOs9Ue2g7C5INLfZIKJqkPdv/nJ0+himOix7FF/VCOtl+tzH7zRcDIg4DJOZ3o+UqgbQznFVk059DMktsJwPigCRncbGbnjuhTP/oQ/ARNVJ/sg2QizHWbEWZQJUOHz0gAD+9oebZghQfn77Lg1mFHJ0DiuzqS4UHWj+l5Cx6NucAnY+R/5/asfHkiHvLoT9c4xGrMwY9lsJHU+rb9+KmMyiBUKYuUcRvHUhXOR3lFW41JFbPdIW8vxoo2W/ZHszOEdsvKi5X2S/Fz++cHJED7lELwdl1xSAQiJeN7LtlDQY6ZhUpQf7SGP164q3wIQZed8fz0UvH0xakP1TfaNv/rtlBScuJVTl6picUOhj59313dHyeARQxtzjzmQRVZnk0xzUbxZtn8Irw2yMX264PX05WkqUSS6ZOx5x5yU+913kVTdB6IK4oXw3i7cIvHdZWUDq5VtX4GaI0JmsY+L044di4wcEV8YBbm3tcEkE4mya7dlEqiMWILE8Zo3uhCsDACx/e85t34A8pg2BkZSlI8zMtXQI0k9Qk1qhXfLVoy+0j9W61x6trNWjo+UlnxEQsdpWSegwsBowtu8dQJief8VsqzUpZu+LY4wjXPDSAxFORJjyzIpNV4wyo+8wHi4Clsv8i1SYx0dfrSb/H4B+gLM5oFJ+6OKEeCppZbZcCsWBe0S9UZmROEGp2P2/BaIWRgECDBqW/PkS8SVo4CetVh49VvYxlO/EJ1bAZQLKvFJA0Kfod3zeisKbJJP391Yt54s3d8Rk9R+LJUOXyp299zO0ERCq5p6t1mYGUaTzJjo0mvprUy22h46nSAJwTp3kdSfRosAA" alt="SkinLED"><h3>SkinLED</h3><p>Fototerapia LED para recuperação e complemento de protocolos.</p><span class="how">Por sessão</span></div>
+        <div class="trow"><img src="data:image/webp;base64,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" alt="Centrífuga com tubo de PRP"><h3>Centrífuga e PRP</h3><p>Preparo de PRP e outros procedimentos regenerativos.</p><span class="how">Sob orçamento</span></div>
+        <div class="trow"><img src="data:image/webp;base64,UklGRlYFAABXRUJQVlA4IEoFAABwKQCdASqQAGwAPrlMoUqnJKOhsNbNmOAXCWUAz/3brMdAxEHe3ECkjj696utZ9TfDwMTrluE9PfXZycBvUX7dc5HO1/c0Q2GMdg1x5dqycUJRbRGWGlcxGGQxnnLV3J27esc2AUPpLUjIw9tuZYJOSoEu107VtRFikWREs78c61PihFalmyvVtwXrR5a5heApLQ0LCsLkQT+XPgsd8DZ3oY1sTiA1FJkKwhJPEXKxRi9Mc9Dj4arYY9NZu9F0n6pOHruxHzt/RbG3MNlwhoN1WBJ04BgCDcnNCVSfpj7YTPSQpn6nQAq3rKPdTZWA2BvXa/3T4VNdRyNdFfXYubHBdMIsEk2jyBz+/dEzocfJWAL8Mv7NuzcPAZLfeCRpvXHmjruwFVH6/hH0VBHvju+1LcZGbEhplpdoq5I/+UDk94EowOeE57DTHLH0HUzTPvOuNqb0AP78eXs5TmSDU4LEmCZlWpiVpaEnvS85X7Poazwx/hFymRJvxl1Ldu7GUNMfiRfGM6pZdOBKoeokyGtxcPKEm1H/VKEoB7Yy5UL/GBGWnvXjH6T7INuJc4o2aLnduS6vU6d38QSyNjRHEi++eXfewMnDDJ38JzwrW7qQXWQlMgaYIaly79gntyYArO6wMVHLFs19SCY+sOHLkSuWlF2Naq5u+FEUaXGLlGsNwqcjaX5VSeyV4H6eP6fO3iFXJQTTLqiGVYI7XiPUMPBTjq30tMxBZKvVKG8PXNvPZAlLijwwPlW3QdymUtwp9TtB7PFA4u/GBlKjI9GSr35Wn7szSka60/YnRL/1jV0EmJ/rG1p36y/m8EIMAZOgxsM4WRboT5bYRLUrz4b1wlFfLBvvjIvh2miUlEfjpT/8sjPBpRANluYFxIpcTYYexUoD5CNXK19ApEKN3vwGvOPYaIzMOFjclLv87HzNPqsQJ7WAjUXoSc6bjMJja97Sm1Fe5JW/8WuIsmY0J8guVpvkghtjFf5L58dCxEF+pU1qKGEBj1nz9hoBeWVpGf1pr0Km5TcAT6od3WrCflXN1R5QEznE6oXELNoO1kkNl2GoZ0DJD14M5Y0rK22pUcbGPvaSiGM0yyQx6nqu79TMeZspTMNmqbSxr5WbFcJjw26BtfV2ErMmsysRdW32FhD01Qw89vfecL2+x2+jGIwZG4VHQpedCAgbCqxAbBieKjU++5EACx0ae9nkPa7/F/eAB/hFZou4VSwu62iN4q1XH857Xtftd+/NErA7SbqY1nn+v0n4c5UNX4l7OJMHuEVrCVAsuaNHjb91zF759+5X1Ryv5AI2zXjqjOw6F9jVa6L3/MABfOUTmbfWD+Ov12ki4tadTVyKEUWzPIoZjhT81+eO/ZG7jgZkSwqAHWu1hrqymIhz503uEG2mP0z90nbCzyGVpwuKUvSPI8kU5iq4NF3viIs+BwgceS4RIfHZNFdw2i0naBIItadi0mbhcYORt1HuAo5iX9S/WjXO3zEjittWXN6A5NDHuj6x53tyfCHSVj6rNyv/LTmvsBpJfF5tQqKnUIqdIiMY9unxwh4nNiZpZtiaUVf6Xq4qXQS7n/kZXRKob65tBID9ilzcB+f4z6ISSct09brYIX56G94kjGRHC1IxedrQkmKynEcOAKGgR78+jwgxSGb3oyOjuA6grD4Br0kdzFNsbMRDoC7UOdyvZEwWcMZKbloFaBCOSKolW+fSPLz38aciPmgFjiyz/L9EFilGNEJL1kuO5mQ5U7UFUJR0GyUE6Bss6YCnNZYP2/KQ4HfGA2mpkNp5K/I9XnqJA+yDK9drAAAA" alt="Seringas e insumos sobre bandeja"><h3>Insumos</h3><p>Pequenas intervenções, bloqueios, infiltrações, viscossuplementação e procedimentos estéticos.</p><span class="how">Por procedimento</span></div>
+        <div class="trow"><img src="data:image/webp;base64,UklGRmgFAABXRUJQVlA4IFwFAABwJgCdASqQAGsAPrVInUqnJCKhs9g9qOAWiUAZKJc6njKqX4FgeQ/5I5PBweGnROpuadgjG1wdK4wuXs3Rl9yOTb0MMvjaZAKWMYhUv8DSbaxVRqfCtjjBc4U2051rAiJXLngUyJfdUbwtzcp8M8OyOpA8GurKXyqY6KVo6Kor1flz4a4nX7MRpbK9uuzbvVLNRQK9pmDu9hUxEW47EskOTf5oJyvO3FpJ2hnr9nVEQVERv2imZr3xAdGgyRsqsTqJX/77XKYUQCreuhyQfqV//pgfuBhFA7BJVCyRHsL2yls1MW+PdLfuvfdMtSsJhS8kxq3gxYHSp7vyIVfSqmtenKLXPHIu6tVPuAcxyc4LpDIYJ5wQZBaBW1USucLpPr18ye2gpeXWGexIAfDtR8WPAuJMCD7pFied0frgAP79LhqCrvGf9uQva1wKGO4jIEjhsd1KRurakxjX/6ClO9R29MIrQk2Q4lJLmWaIWr38bPV1IuBsRaznra5T1uZySEz9UTIRriGEqBX9oB2buTWSJS4+dv7E61SSFyxy3Eg3o5YDOviz1LMcaREWAlASSUrBeqjRjUqYWo4NfEDjKEcaqXJ2kxL/78pb5jHW+wJoQ2lDp08yb6lZW52sFX2hj7+BE7XRrqhg+nW9wwjQHSJ2rrLSBxtT/9dKi5ir4JpxmMwfTXm7riUIxDcz5/WwLcOxh8nGGwiu3JnJQDW3XKiYHylsbAOZ3+zAhkWRm6psAo2ui0IVYIRDwl14e0uN8z25uIVDZ7AHzQp5q+eCIIcveT8gDNiTtJDkPFGERLJRoZkadY7IL08ZKcfXhjt2WPp+2/tRqx29p3RyTacQ7Dt7SheTj3TfoJzL+mcrZaJXqOUgsn/KappMI92CJ+WWL/vRMxF6hPEW2fooQGwwnb6dQt30LLmBqF4sdjs3ZIF1UAcztUXctTlyGMYu8XLXOsyS2HMCenkr18q/N1/KxtH2SxUZTj8rY0H8ULcTYnQqeixa3s4i+0PKM4RlY5l+c1ZiERgWxMW/B2DQKK42l+Q7VyqwM/nngG0yGDAnItZDU4eMbOIZszt4WgAr7AZukIABkj4+jSbIudrj85Wh7uRWvOI0FcBngXtC+49SM02GwAh3HDL7Rlp7znA8ciE90uQ+YjrnnuPNVVPu04kxmYbtb7bMSMc0G/svm7NeZhlhDKuLP2TLlddPl81XWXERNmihaugHcpPX2YSxKDler/AuFEFldyQHyaVoBBBckZorPhC4sPs1557lsksK6+YjNmDShHAqY4GfEYxQBwoKRAp/YFmKqfeIYbaLL3s5mfLWPuVuoj3vxYyV034w8F/xQshVBrPQF1reBGmTyVmR/L/DjZr2BsSf4SaJWZli77WR3DrV3f33Eg6Z5iLDviJDxJ76tt/1CAoqcyAZSOe5h7IFlLRn59dxtfLPSFwe6tGOqlZzuxzA9Le87sVXGL7JvYOCRAz4KVI1MaeH7eGhIrpYVwSJ5ic1FXwjLJyq78XBsX04KDDugIMf/rmq2V7eaUZQ5jnOmbuCEZu3wd6bFSyGH3KuJJhREWTlMRbnQqqFY6yjUV+tQ37+qtEboQ/sK0XpxCQCBuJux9MU3UrEfrabWx1VhwGd82pyEUBo6TEWa4r0RVijeKHq4u1R9LPeCPr+nHl5cczE3ITTboRu3TvSC/8xKO/nZz6yWwOl7NnzIQbO94rXaXgbPJ6DrHjXNvngRN+ZvIfLkZanS4FjDTH8ZDqikP+6dM63u0W1LsM8ch3gTfL3afnAYSvE+fIzDiCLpnLhPg8zxdioxC6n5LbQrHFstiWRvFqkAAAA" alt="Técnica de enfermagem da clínica"><h3>Técnica de enfermagem</h3><p>Apoio no preparo, na aplicação e no pós-procedimento.</p><span class="how">Hora ou diária de 6h</span></div>
+      </div>
+    </section>
+
+    <section class="sec" id="digital">
+      <div class="sec-head">
+        <div class="t"><p class="label">Prontuário e agenda digital</p><h2>Seu atendimento organizado e encontrável</h2></div>
+        <p class="d">Duas plataformas do ecossistema Blues que funcionam na clínica e nos outros lugares onde você atende.</p>
+      </div>
+      <div class="digital">
+        <div class="prod">
+          <div class="prod-brand"><img src="data:image/webp;base64,UklGRkwFAABXRUJQVlA4WAoAAAAQAAAAZwAAZwAAQUxQSHABAAABgBvbtqvm3HeRd6E3zRCRk/FTeV/FLwRKksemlPDf+9wZvh/uDTWKCEZuIykqGFq6b9ULUEVqudybVkos6VqERiTGkr0ono6nK+N4Gkc9LMnUAAzsdQbfooDfg84ewA1OD27fRcQnPl0pfeJF5P32oO6hA54+RXxINQxp8CKfT4Cr5c1XkeKJjgOR180aYlx+iA+iisHLxyW40he/4kUdvfxeVMjhNGeVOoUrM5+OMuvU6JSLIqZhZq0aUvGjLbxl1qs3tApvuMqsWVfg3NnBMATNCGF4wJTNt9mse7oFg9zhMKS6kYbhoaMW2tmsfWqjxegvgnaERR/sNmaSakcqsw2HKCSinkmIgK5YgHSBWLx+eIlB8+yK/gtzorENjImmNjD99x9/WGDo/7ydvMFMfmIoD7KTb9nJ6+zkj3byVDv5sJm8205+b6aPYKZfYacvYqb/YqbPY6afZKZvZaY/ZqYPZ6bfZ6WvaLN/aaZPClZQOCC2AwAA0BgAnQEqaABoAD7BXKhNJ6WkJafVWtDwGAlmAMo0+9Lmrz3Plp0Awk/0JvU/Mv5zPph/6fpgdRhvNZs3+6Hyt9FwQ62Jjg0syNN1D6pSwlIyNeT2CapkaYhZQtgh1sBUx9PQNSit/G0XDVIwx+UZMmiAo3QWMzJbxfNiZcc9G0xsa72vxq0b0Druw+VR/eukxrCTlTx1lqBj7nNm3g9DuK3Ht4iVPrLDYHvRmzwaSnG5ErPzxzby3uHa3AunbNqdPmkfKUHL8pgrfh6DfNwAAP77Y0/2TaJE7sW0aNM5G+wUuH1E+IdyHNCnzIJ4urdPFHw+xWj0Wlma19LdI7v01p6XynoyttTjXZqISKGbOB3ynbXikSZq1RE/8bb/AQDYjSL3FUKYtaHY6x9Hql8npfIqn6LHmMNnCnSmUrxykx4FdvPp36++urogE+w9XfQ3yqctm1t3pmGc4y787oSIQ1ujnqBLEfPJyRVquuZKngXeNIa7bzP8ujHUG7O8M1zzaPvy6dfGkdnVHlJ6lNgR05cu2t4p7XMbW0xz8dorj2ZNDZSnLPLv0MjRh4hTtc7GNz+ghSBsNH0S35qL85qVMYT8RjDPkK6oB4b6020/azEQDCWZH5WD1BDT+bvkznU0UtCF6Uu0dqubHshMMZfLHa6t+25bx33e+Vm4VVXOuWT/kfzJo/zN1ziNN5Bola32ZjxlJpEKVRyokSBgqHe7MHsoHWlMl2OK5x+bIkrUvwO2gISoVV8N//sUtWFXA/2tS47Mu+L4lb04xQ3Pn5n2uUBUzdW2sa5mBR6HPLA3PEv4i5Gkz1nvrjIXQ+GHZ8ujUnB/uhSz1JJ03Boku5LYYcdCIpIK7WVJ0gbuStf1/oqtx9TouQcuxrIIbb0997BbADBopb9GNg/jBJNC58jDSEzR5WgjTb5w2jbwrl21o/b+R4qrxPk9HwNqss6hPj2vWI9vcx4ZV2AAofioYYUw7oeSf5wB3z//tedUeJwHN6oRdlgkviAAyVek/OsuFfImUHkVWLfJNTdXr2AGGgT2bnMjlW9GCLrDSCpAIpYebCKuTKvyGQHx+5s9qegcPYM/m+ss8mjBvW//7cUMq8tJutDUODiuOPqgs2NlxthPISOIpbCIQOpUZJgkbFqiP3dv8V9OxSNE4onwbq10sbp/eGi1ijVN8s0+RxvRV5VzAmYF0DpCsP5X+Y9XP+VLJNM0wypgLBYgUjLjHQJCWstjxlOIz8dgn1guZUlkinyAf8P2Of60AAA=" alt="Logo MediBlues"><div><span class="nm">MediBlues</span><span class="by">Agenda, prontuário e financeiro</span></div></div>
+          <p class="what">O prontuário e a gestão do seu consultório em um só sistema.</p>
+          <ul>
+            <li>Prontuário eletrônico ajustado à sua especialidade</li>
+            <li>Agenda da equipe e orçamento gerado na própria consulta</li>
+            <li>Recebimentos, repasses e financeiro no mesmo lugar</li>
+            <li>Funciona na Blues e nos outros locais onde você atende</li>
+          </ul>
+          <a class="go" href="https://mediblues.com.br/" target="_blank" rel="noopener">Conhecer o MediBlues <svg aria-hidden="true"><use href="#ext"/></svg></a>
+        </div>
+        <div class="prod">
+          <div class="prod-brand"><img src="data:image/webp;base64,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" alt="Logo DoctorBlues"><div><span class="nm">DoctorBlues</span><span class="by">By MediBlues</span></div></div>
+          <p class="what">Seu perfil digital, com agenda que o paciente marca sozinho.</p>
+          <ul>
+            <li>Perfil profissional para pacientes encontrarem você</li>
+            <li>Agenda virtual com automarcação pelo paciente</li>
+            <li>Mais um canal de captação de pacientes particulares</li>
+            <li>Menos troca de mensagens para fechar um horário</li>
+          </ul>
+          <p class="opt-note">Opcional</p>
+          <a class="go" href="https://doctorblues.com.br/" target="_blank" rel="noopener">Conhecer o DoctorBlues <svg aria-hidden="true"><use href="#ext"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="crescimento">
+      <div class="grow">
+        <div class="side">
+          <p class="label">Para quem quer crescer</p>
+          <h2>Ajuda para encher a agenda de particulares</h2>
+          <p class="lede">Serviços mensais opcionais, contratados junto com a locação ou depois.</p>
+        </div>
+        <dl>
+          <dt>Consultoria comercial</dt>
+          <dd>Planos de acompanhamento, estrutura comercial e posicionamento médico, com reuniões semanais de direcionamento.<small>Inclui secretária para agendamento e sistema de gestão dentro e fora da clínica.</small></dd>
+          <dt>Marketing</dt>
+          <dd>Pack mensal de vídeos e imagens para as suas redes, produzido na clínica.</dd>
+          <dt>Gestão de tráfego pago</dt>
+          <dd>Campanhas para atrair pacientes particulares, gerenciadas pela equipe da clínica.<small>O valor do impulsionamento é pago à parte, direto na plataforma.</small></dd>
+          <div class="pack"><dt>Pack completo</dt>
+          <dd>Diária fixa semanal, marketing, gestão de tráfego e consultoria comercial em uma única mensalidade, com desconto sobre a contratação separada.</dd></div>
+        </dl>
+      </div>
+    </section>
+  </div>
+
+  <section class="band">
+    <div class="in">
+      <p class="label">Como funciona a cobrança</p>
+      <h2>A mensalidade cobre o espaço. O resto, só quando você usar.</h2>
+      <p><b>Insumos, medicações, uso de tecnologias e técnica de enfermagem</b> são orçados à parte, para cada atendimento ou procedimento. Assim você não carrega custo fixo do que não usa.</p>
+    </div>
+  </section>
+
+  <div class="in">
+    <section class="sec" id="contato">
+      <div class="sec-head">
+        <div class="t"><p class="label">Valores e condições</p><h2>Conte como você atende. A proposta vem pelo WhatsApp.</h2></div>
+      </div>
+      <div class="start">
+        <div class="side">
+          <ol class="steps">
+            <li><div><b>Preencha ao lado</b>Formato, especialidade e o que você quer usar.</div></li>
+            <li><div><b>Receba a proposta</b>Valores montados para o seu caso, direto no WhatsApp.</div></li>
+            <li><div><b>Visite a clínica</b>Conheça as salas e escolha os seus horários.</div></li>
+          </ol>
+          <div class="person">
+            <span class="label">Contato da clínica</span>
+            <span class="num">(31) 9597-9065</span>
+            <small>WhatsApp · <a href="https://wa.me/553195979065" target="_blank" rel="noopener" style="color:var(--ink)">abrir conversa</a></small>
+          </div>
+          <div class="person">
+            <span class="label">Para profissionais de saúde</span>
+            <span style="font-weight:600;color:var(--ink);margin-top:6px">Conrado · Clínica Blues</span>
+            <span class="num">(24) 98854-3805</span>
+            <small>WhatsApp para parcerias, locação e serviços</small>
+          </div>
+        </div>
+
+        <div class="formcol">
+          <form id="lead" novalidate>
+            <fieldset>
+              <legend>Seus dados</legend>
+              <div class="grid2">
+                <label class="field" for="nome">Nome completo
+                  <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Dra. Ana Souza" required>
+                  <span class="err" id="e-nome"></span>
+                </label>
+                <label class="field" for="whats">WhatsApp com DDD
+                  <input id="whats" name="whats" type="tel" inputmode="tel" autocomplete="tel" placeholder="(31) 99999-9999" required>
+                  <span class="err" id="e-whats"></span>
+                </label>
+                <label class="field" for="esp" style="grid-column:1 / -1">Área de atuação
+                  <input id="esp" name="esp" type="text" maxlength="120" placeholder="Ex.: Dermatologia, com foco em estética e tricologia" required>
+                  <span class="err" id="e-esp"></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Formato de locação<span>escolha um</span></legend>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="formato" value="Por hora" id="f-hora"><span>Por hora</span></label>
+                <label class="opt"><input type="radio" name="formato" value="Turno semanal de 3h" id="f-t3"><span>Turno de 3h semanal</span></label>
+                <label class="opt"><input type="radio" name="formato" value="Turno semanal de 6h" id="f-t6"><span>Turno de 6h semanal</span></label>
+                <label class="opt"><input type="radio" name="formato" value="Diária" id="f-dia"><span>Diária</span></label>
+                <label class="opt"><input type="radio" name="formato" value="Diária fixa semanal" id="f-fixa"><span>Diária fixa semanal</span></label>
+                <label class="opt"><input type="radio" name="formato" value="Apenas serviços e consultoria, sem locação de sala" id="f-serv"><span>Apenas serviços e consultoria</span></label>
+                <label class="opt"><input type="radio" name="formato" value="Ainda não sei" id="f-ns"><span>Ainda não sei</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>O que você teria interesse em usar<span>marque quantos quiser</span></legend>
+              <p class="sub">Equipe e materiais</p>
+              <div class="opts" data-group="Equipe e materiais">
+                <label class="opt"><input type="checkbox" value="Técnica de enfermagem" id="c-enf"><span>Técnica de enfermagem</span></label>
+                <label class="opt"><input type="checkbox" value="Insumos para procedimentos" id="c-ins"><span>Insumos para procedimentos</span></label>
+                <label class="opt"><input type="checkbox" value="Medicações (sala de infusão)" id="c-med"><span>Medicações (sala de infusão)</span></label>
+                <label class="opt"><input type="checkbox" value="Centrífuga e PRP" id="c-prp"><span>Centrífuga e PRP</span></label>
+              </div>
+              <p class="sub">Tecnologias que pretende usar</p>
+              <div class="opts" data-group="Tecnologias">
+                <label class="opt"><input type="checkbox" value="Ultraformer MPT" id="c-mpt"><span>Ultraformer MPT</span></label>
+                <label class="opt"><input type="checkbox" value="Ultraformer 3" id="c-u3"><span>Ultraformer 3</span></label>
+                <label class="opt"><input type="checkbox" value="Laser CO2" id="c-co2"><span>Laser CO₂</span></label>
+                <label class="opt"><input type="checkbox" value="Laser Lavieen" id="c-lav"><span>Laser Lavieen</span></label>
+                <label class="opt"><input type="checkbox" value="Galaxy Fiber" id="c-gal"><span>Galaxy Fiber</span></label>
+                <label class="opt"><input type="checkbox" value="SkinLED" id="c-led"><span>SkinLED</span></label>
+              </div>
+              <p class="sub">Gestão e crescimento</p>
+              <div class="opts" data-group="Gestão e crescimento">
+                <label class="opt"><input type="checkbox" value="Prontuário digital e gestão (MediBlues)" id="c-pront"><span>Prontuário · MediBlues</span></label>
+                <label class="opt"><input type="checkbox" value="Perfil e agenda online com automarcação (DoctorBlues)" id="c-doc"><span>Agenda online · DoctorBlues</span></label>
+                <label class="opt"><input type="checkbox" value="Secretária para agendamento" id="c-sec"><span>Secretária e agendamento</span></label>
+                <label class="opt"><input type="checkbox" value="Assessoria e consultoria para agenda" id="c-cons"><span>Consultoria comercial</span></label>
+                <label class="opt"><input type="checkbox" value="Marketing (vídeos e imagens)" id="c-mkt"><span>Marketing</span></label>
+                <label class="opt"><input type="checkbox" value="Gestão de tráfego pago" id="c-traf"><span>Gestão de tráfego</span></label>
+                <label class="opt"><input type="checkbox" value="Pack completo" id="c-pack"><span>Pack completo</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Dias de preferência<span>opcional</span></legend>
+              <div class="opts" data-group="Dias">
+                <label class="opt"><input type="checkbox" value="Seg" id="d-seg"><span>Seg</span></label>
+                <label class="opt"><input type="checkbox" value="Ter" id="d-ter"><span>Ter</span></label>
+                <label class="opt"><input type="checkbox" value="Qua" id="d-qua"><span>Qua</span></label>
+                <label class="opt"><input type="checkbox" value="Qui" id="d-qui"><span>Qui</span></label>
+                <label class="opt"><input type="checkbox" value="Sex" id="d-sex"><span>Sex</span></label>
+                <label class="opt"><input type="checkbox" value="Sáb" id="d-sab"><span>Sáb</span></label>
+              </div>
+              <label class="field" for="obs">Algo mais que devemos saber?
+                <textarea id="obs" name="obs" placeholder="Ex.: atendo cerca de 20 pacientes por semana e faço procedimentos com PRP"></textarea>
+              </label>
+            </fieldset>
+
+            <div class="submit">
+              <button class="btn" type="submit">Receber proposta <svg aria-hidden="true"><use href="#arrow"/></svg></button>
+              <small>No próximo passo, a mensagem fica pronta para você enviar pelo WhatsApp.</small>
+            </div>
+          </form>
+
+          <div class="done" id="done" hidden aria-live="polite">
+            <h3>Falta só enviar.</h3>
+            <p>Revise a mensagem e toque em enviar. Ela abre no WhatsApp, endereçada ao Conrado.</p>
+            <div class="msgbox" id="msg"></div>
+            <div class="acts">
+              <a class="btn" id="walink" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Enviar pelo WhatsApp</a>
+              <button class="btn-quiet" type="button" id="copy">Copiar mensagem</button>
+              <button class="btn-quiet" type="button" id="edit">Editar respostas</button>
+            </div>
+            <p class="fallback">Se o WhatsApp não abrir, copie a mensagem e envie para <b style="color:var(--ink);user-select:all">(24) 98854-3805</b>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="in">
+    <a class="wordmark" href="#topo" aria-label="Clínica Blues"><span class="c">Clínica</span><svg aria-hidden="true"><use href="#cross"/></svg><span class="b">Blues</span></a>
+    <span>Rua Padre Marinho, 165 · Santa Efigênia · Belo Horizonte/MG · WhatsApp <a href="https://wa.me/553195979065" target="_blank" rel="noopener" style="color:var(--ink);font-variant-numeric:tabular-nums">(31) 9597-9065</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PHONE = '5524988543805';
+  var form = document.getElementById('lead');
+  var done = document.getElementById('done');
+  var esp = document.getElementById('esp');
+  var whats = document.getElementById('whats');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  whats.addEventListener('input', function(){
+    var d = whats.value.replace(/\D/g,'').slice(0,11), out = d;
+    if (d.length > 2) out = '(' + d.slice(0,2) + ') ' + d.slice(2);
+    if (d.length > 7) out = '(' + d.slice(0,2) + ') ' + d.slice(2, d.length-4) + '-' + d.slice(-4);
+    whats.value = out;
+  });
+
+  function setErr(id, msg){ document.getElementById('e-'+id).textContent = msg || ''; }
+  function checked(group){
+    return Array.prototype.map.call(form.querySelectorAll('[data-group="'+group+'"] input:checked'), function(i){ return i.value; });
+  }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var ok = true;
+    var nome = document.getElementById('nome').value.trim();
+    var tel = whats.value.replace(/\D/g,'');
+    var espV = esp.value.trim();
+    setErr('nome', nome ? '' : 'Informe seu nome.'); if(!nome) ok = false;
+    setErr('whats', tel.length >= 10 ? '' : 'Informe o WhatsApp com DDD.'); if(tel.length < 10) ok = false;
+    setErr('esp', espV ? '' : 'Conte em poucas palavras sua área de atuação.'); if(!espV) ok = false;
+    if(!ok){ var first = form.querySelector('.err:not(:empty)'); if(first) first.parentNode.querySelector('input,select').focus(); return; }
+
+    var fmt = form.querySelector('input[name="formato"]:checked');
+    var lines = [
+      'Olá, Conrado! Quero receber uma proposta para atender na Clínica Blues.',
+      '',
+      '*Nome:* ' + nome,
+      '*WhatsApp:* ' + whats.value,
+      '*Área de atuação:* ' + espV,
+      '*Formato de locação:* ' + (fmt ? fmt.value : 'Ainda não sei')
+    ];
+    ['Equipe e materiais','Tecnologias','Gestão e crescimento'].forEach(function(g){
+      var v = checked(g); if (v.length) lines.push('*' + g + ':* ' + v.join(', '));
+    });
+    var dias = checked('Dias'); if (dias.length) lines.push('*Dias de preferência:* ' + dias.join(', '));
+    var obs = document.getElementById('obs').value.trim(); if (obs) lines.push('*Observações:* ' + obs);
+    var text = lines.join('\n');
+
+    document.getElementById('msg').textContent = text.replace(/\*/g,'');
+    document.getElementById('walink').href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text);
+    form.hidden = true; done.hidden = false;
+    done.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+  });
+
+  document.getElementById('edit').addEventListener('click', function(){ done.hidden = true; form.hidden = false; form.scrollIntoView({block:'start'}); });
+
+  document.getElementById('copy').addEventListener('click', function(){
+    var btn = this, box = document.getElementById('msg'), text = box.textContent;
+    function selectBox(){ var r = document.createRange(); r.selectNodeContents(box); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Mensagem selecionada'; }
+    try { navigator.clipboard.writeText(text).then(function(){ btn.textContent = 'Copiada'; }, selectBox); } catch(e){ selectBox(); }
+  });
+})();
+</script>
+
+</body>
+</html>
