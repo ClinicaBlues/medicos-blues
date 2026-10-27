@@ -253,9 +253,9 @@ footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items
   <div class="in">
     <section class="hero">
       <div class="hero-copy">
-        <p class="label">Serviços para médicos · Área Hospitalar de BH</p>
+        <p class="label">Serviços para médicos</p>
         <h1>Tecnologia, equipe e apoio comercial para alavancar sua carreira <em>com liberdade.</em></h1>
-        <p class="lede">Para quem procura um lugar bem localizado para atender na Área Hospitalar de BH, e para quem já tem clínica ou consultório mas se perde na hora de cobrar, montar a agenda e captar pacientes particulares.</p>
+        <p class="lede">Para quem procura um lugar bem localizado para atender na Área Hospitalar de BH, e para quem já tem clínica ou consultório, em BH ou fora dela, mas se perde na hora de cobrar, montar a agenda e captar pacientes particulares.</p>
         <p class="lede">Tudo é ajustado à sua especialidade, ao seu tempo de carreira e ao seu momento de vida: do diagnóstico ao treinamento e à execução, dentro e fora da clínica. Nós damos a direção e você executa com a gente. Veja abaixo o que dá para contratar junto ou separado.</p>
         <div class="actions">
           <a class="btn" href="#contato">Consultar valores <svg aria-hidden="true"><use href="#arrow"/></svg></a>
@@ -486,6 +486,9 @@ footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items
                 <label class="opt"><input type="checkbox" value="Sex" id="d-sex"><span>Sex</span></label>
                 <label class="opt"><input type="checkbox" value="Sáb" id="d-sab"><span>Sáb</span></label>
               </div>
+              <div class="opts" data-group="Só consultoria">
+                <label class="opt"><input type="checkbox" value="Tenho interesse só na consultoria, sem locar consultório" id="d-semsala"><span>Me interessei só pela consultoria, sem locar consultório</span></label>
+              </div>
               <label class="field" for="obs">Algo mais que devemos saber?
                 <textarea id="obs" name="obs" placeholder="Ex.: atendo cerca de 20 pacientes por semana e faço procedimentos com PRP"></textarea>
               </label>
@@ -567,6 +570,7 @@ footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items
       var v = checked(g); if (v.length) lines.push('*' + g + ':* ' + v.join(', '));
     });
     var dias = checked('Dias'); if (dias.length) lines.push('*Dias de preferência:* ' + dias.join(', '));
+    var semSala = checked('Só consultoria'); if (semSala.length) lines.push('*Observação:* ' + semSala.join(', '));
     var obs = document.getElementById('obs').value.trim(); if (obs) lines.push('*Observações:* ' + obs);
     var text = lines.join('\n');
 
